@@ -39,9 +39,9 @@ impl Default for ContainsInstantiation {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 #[repr(C)]
-#[derive(Debug, Default, Copy)]
+#[derive(Debug, Copy)]
 pub struct ContainsOpaqueInstantiation {
-    pub opaque: u32,
+    pub opaque: Template<::std::os::raw::c_int>,
 }
 #[test]
 fn bindgen_test_layout_ContainsOpaqueInstantiation() {
@@ -62,8 +62,11 @@ fn bindgen_test_layout_ContainsOpaqueInstantiation() {
 impl Clone for ContainsOpaqueInstantiation {
     fn clone(&self) -> Self { *self }
 }
+impl Default for ContainsOpaqueInstantiation {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
 #[test]
-fn __bindgen_test_layout_Template_open0_char_close0_instantiation() {
+fn __bindgen_test_layout_Template_open0_c_char_close0_instantiation() {
     assert_eq!(::std::mem::size_of::<Template<::std::os::raw::c_char>>() ,
                1usize , concat ! (
                "Size of template specialization: " , stringify ! (
@@ -72,4 +75,15 @@ fn __bindgen_test_layout_Template_open0_char_close0_instantiation() {
                1usize , concat ! (
                "Alignment of template specialization: " , stringify ! (
                Template<::std::os::raw::c_char> ) ));
+}
+#[test]
+fn __bindgen_test_layout_Template_open0_c_int_close0_instantiation() {
+    assert_eq!(::std::mem::size_of::<Template<::std::os::raw::c_int>>() ,
+               4usize , concat ! (
+               "Size of template specialization: " , stringify ! (
+               Template<::std::os::raw::c_int> ) ));
+    assert_eq!(::std::mem::align_of::<Template<::std::os::raw::c_int>>() ,
+               4usize , concat ! (
+               "Alignment of template specialization: " , stringify ! (
+               Template<::std::os::raw::c_int> ) ));
 }

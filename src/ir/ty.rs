@@ -86,6 +86,22 @@ impl Type {
 
     /// Get this type's name.
     pub fn name(&self) -> Option<&str> {
+        if let TypeKind::Int(ik) = *self.kind() {
+            match ik {
+                IntKind::Char { .. } => return Some("char"),
+                IntKind::SChar => return Some("signed_char"),
+                IntKind::UChar => return Some("unsigned_char"),
+                IntKind::Short => return Some("short"),
+                IntKind::UShort => return Some("unsigned_short"),
+                IntKind::Int => return Some("int"),
+                IntKind::UInt => return Some("unsigned_int"),
+                IntKind::Long => return Some("long"),
+                IntKind::ULong => return Some("unsigned_long"),
+                IntKind::LongLong => return Some("longlong"),
+                IntKind::ULongLong => return Some("unsigned_longlong"),
+                _ => ()
+            }
+        }
         self.name.as_ref().map(|name| &**name)
     }
 

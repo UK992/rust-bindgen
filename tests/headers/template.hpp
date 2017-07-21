@@ -4,7 +4,15 @@ template<typename T, typename U> class Foo {
     T m_member_arr[1];
 };
 
+template<typename T> class B {
+    T m_member;
+};
+
 void bar(Foo<int, int> foo);
+
+struct C {
+    B<unsigned int> mB;
+};
 
 template<typename T>
 class D {
