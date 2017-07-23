@@ -20,6 +20,10 @@ cargo test --features "$BINDGEN_FEATURES testing_only_extra_assertions"
 cargo test --release --features "$BINDGEN_FEATURES testing_only_extra_assertions"
 ./ci/assert-no-diff.sh
 
+if [[ $MACHTYPE == *pc-msys ]]; then
+  exit
+fi
+
 # Now test the expectations' size and alignment tests.
 
 pushd tests/expectations
