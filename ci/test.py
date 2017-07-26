@@ -61,14 +61,9 @@ with open(os.path.join(sys.path[0], 'test.commands'), 'r') as steps:
         env_var = re.findall(r'env\(\w+\)', line)
         if env_var:
             for env in env_var:
-                if 'posix' in sys.modules:
-                    line = line.replace(env, '${}'.format(env[4:-1]))
-                else:
-                    line = line.replace(env, '${}'.format(env[4:-1]))
-
                 print(env[4:-1])
                 print(os.environ.get(env[4:-1], ''))
-                #line = line.replace(env, os.environ.get(env[4:-1], ''))
+                line = line.replace(env, os.environ.get(env[4:-1], ''))
 
         print(line)
         subprocess.check_call(line, shell=True)
