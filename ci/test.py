@@ -9,10 +9,10 @@ import subprocess
 #os.chdir(sys.path[0])
 #print(os.getcwd())
 os.chdir(os.path.join(sys.path[0], os.pardir))
-print('posix' in sys.modules)
-print('ntpath' in sys.modules)
-print( sys.prefix)
-print(sys.modules['os'])
+# print('posix' in sys.modules)
+# print('ntpath' in sys.modules)
+# print( sys.prefix)
+# print(sys.modules['os'])
 
 #print(os.getcwd())
 #print("ssssssssssssssss")
@@ -57,13 +57,25 @@ with open(os.path.join(sys.path[0], 'test.commands'), 'r') as steps:
     for line in steps.readlines():
         if line.strip().startswith('#') or not line.strip():
             continue
-        #env_var = re.findall(r'\B\$\w+', line)
+
+        if '%no_diff_assert%' in line:
+            no_diff_assert()
+
         env_var = re.findall(r'env\(\w+\)', line)
         if env_var:
             for env in env_var:
-                print(env[4:-1])
-                print(os.environ.get(env[4:-1], ''))
+                # print(env[4:-1])
+                # print(os.environ.get(env[4:-1], ''))
                 line = line.replace(env, os.environ.get(env[4:-1], ''))
 
         print(line)
         subprocess.check_call(line, shell=True)
+
+
+def no_diff_assert():
+    # git add -u
+    # git diff @
+    # git diff-index --quiet HEAD
+    subprocess.check_call('git add -u',shell=True)
+    subprocess.check_call('git diff @',shell=True)
+    subprocess.check_call('git diff-index --quiet HEAD',shell=True)

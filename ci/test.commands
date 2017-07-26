@@ -2,13 +2,13 @@
 # that we always get the expected generated bindings.
 
 cargo test --features "env(BINDGEN_FEATURES)"
-./ci/assert-no-diff.sh
+%no_diff_assert%
 
 cargo test --features "env(BINDGEN_FEATURES) env(BINDGEN_FEATURES2) testing_only_extra_assertions"
-./ci/assert-no-diff.sh
+%no_diff_assert%
 
 cargo test --release --features "env(BINDGEN_FEATURES) testing_only_extra_assertions"
-./ci/assert-no-diff.sh
+%no_diff_assert%
 
 # Now test the expectations' size and alignment tests.
 
