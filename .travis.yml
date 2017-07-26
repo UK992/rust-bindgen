@@ -36,7 +36,7 @@ before_install: . ./ci/before_install.sh
 script:
   # - ./ci/assert-rustfmt.sh
   - BINDGEN_FEATURES="$BINDGEN_FEATURES" ./ci/assert-docs.sh
-  - BINDGEN_FEATURES="$BINDGEN_FEATURES" ./ci/test.sh
+  - BINDGEN_FEATURES="$BINDGEN_FEATURES" python ./ci/test.py
   - ./ci/test-book.sh
 
 after_success:

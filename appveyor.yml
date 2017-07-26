@@ -51,7 +51,7 @@ install:
   - if %TARGET%==msvc clang --version
 
 build_script:
-  - if %TARGET%==msvc .\ci\test.bat
-  - if %TARGET%==gnu bash -lc "export BINDGEN_FEATURES=$BINDGEN_FEATURES; cd $APPVEYOR_BUILD_FOLDER; ./ci/test.sh"
+  - if %TARGET%==msvc python .\ci\test.py
+  - if %TARGET%==gnu bash -lc "export BINDGEN_FEATURES=$BINDGEN_FEATURES; cd $APPVEYOR_BUILD_FOLDER; python ./ci/test.py"
 
 test: off
