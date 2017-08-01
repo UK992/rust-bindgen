@@ -1,4 +1,3 @@
 tests/stylo.hpp -diff
 
-
-tests/* linguist-vendored
+tests/headers/* linguist-vendored
